@@ -6,7 +6,9 @@ from flask_app.models.user_model import User
 @app.route("/")
 def get_users():
     list_of_users = User.get_all()
-    return render_template("all-users.html", list_of_users=list_of_users)
+    if len(list_of_users) == 0:
+        return redirect("/user/form")
+    return render_template("users.html", list_of_users=list_of_users)
 
 
 @app.route("/user/form")

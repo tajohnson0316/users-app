@@ -24,6 +24,7 @@
             <th scope="col">Full Name</th>
             <th scope="col">E-mail</th>
             <th scope="col">Created At</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +34,15 @@
             <td>{{user["first_name"]}} {{user["last_name"]}}</td>
             <td>{{user["email"]}}</td>
             <td>{{user["created_at"]}}</td>
+            <td>
+              <div class="d-flex justify-content-around">
+                <p class="text-justify"><a href="/">Show</a></p>
+                <span>|</span>
+                <p><a class="link-warning" href="/">Edit</a></p>
+                <span>|</span>
+                <p><a class="link-danger" href="/">Delete</a></p>
+              </div>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
