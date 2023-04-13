@@ -36,9 +36,13 @@
             <td>{{user["created_at"]}}</td>
             <td>
               <div class="d-flex justify-content-around">
-                <p><a href="/users/{{user["id"]}}">Show</a></p>
+                <p><a href="/users/{{user['id']}}">Show</a></p>
                 <span>|</span>
-                <p><a class="link-warning" href="/">Edit</a></p>
+                <p>
+                  <a class="link-warning" href="/users/{{user['id']}}/edit"
+                    >Edit</a
+                  >
+                </p>
                 <span>|</span>
                 <p><a class="link-danger" href="/">Delete</a></p>
               </div>

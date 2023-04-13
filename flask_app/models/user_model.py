@@ -45,5 +45,17 @@ class User:
         """
 
         result = connectToMySQL(DATABASE).query_db(query, data)
+        print(result)
         current_user = cls(result[0])
         return current_user
+
+    @classmethod
+    def update_one(cls, data):
+        query = """ 
+            UPDATE users
+            SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s
+            WHERE id = %(id)s;
+        """
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+        return result

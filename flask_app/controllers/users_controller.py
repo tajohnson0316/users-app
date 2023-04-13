@@ -16,6 +16,13 @@ def display_user_form():
     return render_template("new-user-form.html")
 
 
+@app.route("/users/<int:id>/edit")
+def display_user_edit_form(id):
+    data = {"id": id}
+    user = User.get_one(data)
+    return render_template("edit-user-form.html", user=user)
+
+
 @app.route("/users/new", methods=["POST"])
 def create_user():
     print(request.form)
@@ -27,6 +34,20 @@ def create_user():
 
     user_id = User.create_one(new_user)
     return redirect("/")
+
+
+@app.route("/users/update/<int:id>", methods=["POST"])
+def update_user(id):
+    print(request.form)
+    updated_user = {
+        "id": id,
+        "first_name": request.form["first_name"],
+        "last_name": request.form["last_name"],
+        "email": request.form["email"],
+    }
+
+    User.update_one(updated_user)
+    return redirect(f"/users/{id}")
 
 
 @app.route("/users/<int:id>")
