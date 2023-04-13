@@ -35,3 +35,15 @@ class User:
 
         result = connectToMySQL(DATABASE).query_db(query, data)
         return result
+
+    @classmethod
+    def get_one(cls, data):
+        query = """ 
+        SELECT *
+        FROM users
+        WHERE id = %(id)s
+        """
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+        current_user = cls(result[0])
+        return current_user

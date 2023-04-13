@@ -11,12 +11,12 @@ def get_users():
     return render_template("users.html", list_of_users=list_of_users)
 
 
-@app.route("/user/form")
+@app.route("/users/form")
 def display_user_form():
     return render_template("new-user-form.html")
 
 
-@app.route("/user/new", methods=["POST"])
+@app.route("/users/new", methods=["POST"])
 def create_user():
     print(request.form)
     new_user = {
@@ -27,3 +27,10 @@ def create_user():
 
     user_id = User.create_one(new_user)
     return redirect("/")
+
+
+@app.route("/users/<int:id>")
+def display_user(id):
+    data = {"id": id}
+    user = User.get_one(data)
+    return render_template("display-user.html", user=user)
