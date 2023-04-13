@@ -44,7 +44,11 @@
                   >
                 </p>
                 <span>|</span>
-                <p><a class="link-danger" href="/">Delete</a></p>
+                <form action="/users/delete/{{user['id']}}" method="POST">
+                  <button type="submit" class="btn btn-link text-danger p-0">
+                    Delete
+                  </button>
+                </form>
               </div>
             </td>
           </tr>

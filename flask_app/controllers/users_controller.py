@@ -11,6 +11,13 @@ def get_users():
     return render_template("users.html", list_of_users=list_of_users)
 
 
+@app.route("/users/<int:id>")
+def display_user(id):
+    data = {"id": id}
+    user = User.get_one(data)
+    return render_template("display-user.html", user=user)
+
+
 @app.route("/users/form")
 def display_user_form():
     return render_template("new-user-form.html")
@@ -33,7 +40,7 @@ def create_user():
     }
 
     user_id = User.create_one(new_user)
-    return redirect("/")
+    return redirect(f"/users/{user_id}")
 
 
 @app.route("/users/update/<int:id>", methods=["POST"])
@@ -50,8 +57,7 @@ def update_user(id):
     return redirect(f"/users/{id}")
 
 
-@app.route("/users/<int:id>")
-def display_user(id):
-    data = {"id": id}
-    user = User.get_one(data)
-    return render_template("display-user.html", user=user)
+@app.route("/users/delete/<int:id>", methods=["POST"])
+def delete_user(id):
+    User.delete_one({"id": id})
+    return redirect("/")
