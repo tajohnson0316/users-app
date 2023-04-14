@@ -42,9 +42,11 @@
           <a class="link-warning" href="/users/{{user['id']}}/edit">Edit</a>
         </p>
         <span>|</span>
-        <p>
-          <a class="link-danger" href="/users/delete/{{user['id']}}">Delete</a>
-        </p>
+        <form action="/users/delete/{{user['id']}}" method="POST">
+          <button type="submit" class="btn btn-link text-danger fs-5 p-0">
+            Delete
+          </button>
+        </form>
       </div>
     </div>
     <script
